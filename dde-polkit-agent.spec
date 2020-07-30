@@ -11,7 +11,6 @@ Source0:        %{repo}_%{version}-%{release_name}.orig.tar.xz
 
 BuildRequires:  gcc-c++
 BuildRequires:  dtkwidget-devel >= 5.1.1
-#BuildRequires:  pkgconfig(dframeworkdbus) >= 2.0
 BuildRequires:  dde-qt-dbus-factory-devel
 BuildRequires:  dde-qt-dbus-factory
 BuildRequires:  pkgconfig(polkit-qt5-1)
@@ -22,7 +21,6 @@ BuildRequires:  qt5-linguist
 BuildRequires:  gsettings-qt-devel
 BuildRequires:  qt5-qtmultimedia-devel 
 BuildRequires:  qt5-qtx11extras-devel
-#BuildRequires:  libdframeworkdbus-dev
 
 %description
 DDE Polkit Agent is the polkit agent used in Deepin Desktop Environment.
@@ -58,5 +56,5 @@ sed -i 's|/usr/lib|/usr/libexec|' dde-polkit-agent.pro polkit-dde-authentication
 %{_includedir}/dpa/agent-extension.h
 
 %changelog
-* Wed Jun 10 2020 uoser <uoser@uniontech.com> - 5.0.9
-- Update to 5.0.9
+* Thu Jul 30 2020 openEuler Buildteam <buildteam@openeuler.org> - 5.0.10-1
+- Package init
