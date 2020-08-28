@@ -3,13 +3,14 @@
 
 Name:           dde-polkit-agent
 Version:        5.0.10
-Release:        1
+Release:        2
 Summary:        Deepin Polkit Agent
 License:        GPLv3
 URL:            https://github.com/linuxdeepin/dde-polkit-agent
 Source0:        %{repo}_%{version}-%{release_name}.orig.tar.xz
 
 BuildRequires:  gcc-c++
+BuildRequires:  dtkcore-devel >= 5.1
 BuildRequires:  dtkwidget-devel >= 5.1.1
 BuildRequires:  dde-qt-dbus-factory-devel
 BuildRequires:  dde-qt-dbus-factory
@@ -56,5 +57,8 @@ sed -i 's|/usr/lib|/usr/libexec|' dde-polkit-agent.pro polkit-dde-authentication
 %{_includedir}/dpa/agent-extension.h
 
 %changelog
+* Fri Aug 28 2020 chenbo pan <panchenbo@uniontech.com> - 5.0.10-2
+- fix compile fail
+
 * Thu Jul 30 2020 openEuler Buildteam <buildteam@openeuler.org> - 5.0.10-1
 - Package init
