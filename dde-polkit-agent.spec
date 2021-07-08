@@ -1,23 +1,19 @@
 %global repo dde-polkit-agent
-%global release_name test+c1
-
 Name:           dde-polkit-agent
-Version:        5.0.10
-Release:        2
+Version:        5.3.0.1
+Release:        1
 Summary:        Deepin Polkit Agent
 License:        GPLv3
 URL:            https://github.com/linuxdeepin/dde-polkit-agent
-Source0:        %{repo}_%{version}-%{release_name}.orig.tar.xz
+Source0:        %{name}_%{version}.orig.tar.xz
 
 BuildRequires:  gcc-c++
-BuildRequires:  dtkcore-devel >= 5.1
+BuildRequires:  dtkcore-devel
 BuildRequires:  dtkwidget-devel >= 5.1.1
 BuildRequires:  dde-qt-dbus-factory-devel
 BuildRequires:  dde-qt-dbus-factory
 BuildRequires:  pkgconfig(polkit-qt5-1)
-BuildRequires:  pkgconfig(Qt5)
-BuildRequires:  pkgconfig(Qt5DBus)
-BuildRequires:  pkgconfig(Qt5Gui)
+BuildRequires:  qt5-devel
 BuildRequires:  qt5-linguist
 BuildRequires:  gsettings-qt-devel
 BuildRequires:  qt5-qtmultimedia-devel 
@@ -34,10 +30,8 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 Header files and libraries for %{name}.
 
 %prep
-%setup -q -n %{repo}-%{version}-%{release_name}
+%setup -q -n %{repo}-%{version}
 sed -i 's|lrelease|lrelease-qt5|' translate_generation.sh
-sed -i 's|/usr/lib|/usr/libexec|' dde-polkit-agent.pro polkit-dde-authentication-agent-1.desktop \
-    pluginmanager.cpp
 
 %build
 %qmake_qt5 PREFIX=%{_prefix}
@@ -49,7 +43,7 @@ sed -i 's|/usr/lib|/usr/libexec|' dde-polkit-agent.pro polkit-dde-authentication
 %files
 %doc README.md
 %license LICENSE
-/usr/libexec/polkit-1-dde/dde-polkit-agent
+%{_prefix}/lib/polkit-1-dde/dde-polkit-agent
 %{_datadir}/%{repo}/
 
 %files devel
@@ -57,6 +51,9 @@ sed -i 's|/usr/lib|/usr/libexec|' dde-polkit-agent.pro polkit-dde-authentication
 %{_includedir}/dpa/agent-extension.h
 
 %changelog
+* Tue Jul 20 2021 weidong <weidong@uniontech.com> - 5.3.0.1-2
+- Update to 5.3.0.1
+
 * Fri Aug 28 2020 chenbo pan <panchenbo@uniontech.com> - 5.0.10-2
 - fix compile fail
 
